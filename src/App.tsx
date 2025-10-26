@@ -5,7 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Welcome from "./pages/Welcome";
-import AdminLogin from "./pages/AdminLogin";
+import LandingLogin from "./pages/LandingLogin";
+// AdminLogin is replaced by LandingLogin
 import UserLogin from "./pages/UserLogin";
 import ForgotPassword from "./pages/ForgotPassword";
 import SuperAdminDashboard from "./pages/SuperAdminDashboard";
@@ -66,8 +67,10 @@ const App = () => {
         <BrowserRouter>
           <AutoLogin>
             <Routes>
-            <Route path="/" element={<Welcome />} />
-            <Route path="/admin-login" element={<AdminLogin />} />
+            {/* Landing page with classic login form */}
+            <Route path="/" element={<LandingLogin />} />
+            {/* Back-compat: route old admin-login path to LandingLogin */}
+            <Route path="/admin-login" element={<LandingLogin />} />
             <Route path="/user-login" element={<UserLogin />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             
